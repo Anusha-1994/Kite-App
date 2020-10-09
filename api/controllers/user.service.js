@@ -5,7 +5,6 @@ const validation   = require('../helpers/validation')
 const errorCode    = require('../config/errorCode')
 const passwordHash = require('password-hash');
 
-
 exports.createUser = (async (req, res) =>{
 
     try{
@@ -74,7 +73,6 @@ exports.createUser = (async (req, res) =>{
         
         
     }catch(error) {
-        console.log("error", error)
         return res.status(500).send({
             code    :   errorCode.unknown_error,
             message :   constants.message.unknown_error

@@ -37,7 +37,13 @@ exports.createEmployeeDetails = (async (request, response) => {
             }, request.body)
         }
         else {
-            let Employeedata = new Employee(request.body)
+            let Employeedata = new Employee({
+                Name         : request.body.Name,
+                EmployeeId   : request.body.EmployeeId,
+                Grade        : request.body.Grade,
+                ContactNumber: request.body.ContactNumber,
+                Designation  : request.body.Designation,
+            })
             await Employeedata.save();
            
         }
