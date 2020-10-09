@@ -1,13 +1,10 @@
 const db           = require("../helpers/db");  
 const User         = db.Users;
-const UserRequest  = db.UserReq;
 const constants    = require('../config/constants') 
 const validation   = require('../helpers/validation')
-const mailHandler  = require('./mailhandler.service')
 const errorCode    = require('../config/errorCode')
 const passwordHash = require('password-hash');
-const common       = require('../helpers/common')
- const uuid        = require('uuid-random');
+
 
 exports.createUser = (async (req, res) =>{
 
