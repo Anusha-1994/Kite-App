@@ -21,15 +21,13 @@ import EmployeeModal from './EmployeeModal'
 const { Search } = Input;
 
 function Employee() {
+  const { employees } = employeeStore;
   const [modalVisible, setModalVisibility]          = useState(false);
   const [loading, setLoading]                       = useState(false);
   const [editing, setEditing]                       = useState(false);  
   const [form]                                      = Form.useForm();
   const [selectedEmployeeId, setSelectedEmployeeId] = useState('');
-  const { employees } = employeeStore;
-  const [value, setValue] = useState('');
-  const [dataSource, setDataSource] = useState(employees);
-
+  const [dataSource, setDataSource]                 = useState(employeeStore.employees);
   const getEmployeeDetails = () => {
     setLoading(true);
     employeeStore.getEmployeeDetails((err?: Error)=> {
@@ -41,7 +39,9 @@ function Employee() {
           message     : 'Error',
           duration    : 0,
         });
+      
       }
+      setDataSource(employeeStore.employees)
     })
   }
 
@@ -152,10 +152,8 @@ function Employee() {
   };
   
   const searchTrigger = (value: any) => {
-    const currValue = value;
-    setValue(currValue);
     const filteredData = employees.filter(entry =>
-      entry.Name.includes(currValue)
+      entry.Name.includes(value)
     );
     setDataSource(filteredData);
   }
